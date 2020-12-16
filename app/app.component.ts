@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ServiceNameService } from './service-name.service';
 
 @Component({
   selector: 'app-root',
@@ -11,8 +12,15 @@ export class AppComponent {
   url;
   userName: string = "";
   nameError: string = "";
+  constructor (private service: ServiceNameService){ } 
 
   ngOnInit(): void {
+    this.service.functionName()
+    .subscribe(
+      data=>{
+        console.log("In service class",data);
+      }
+    )
     this.title = "Hello from BridgeLabz.";
     this.imgUrl = "../assets/BL_logo_square_jpg.jpg";
     this.url = "https://www.bridgelabz.com";
